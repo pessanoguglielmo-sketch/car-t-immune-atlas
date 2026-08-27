@@ -1,0 +1,14 @@
+scanpy>=1.10,<1.11
+anndata>=0.10
+leidenalg>=0.10
+python-igraph>=0.11
+scikit-misc>=0.3
+harmonypy==0.0.10   # pin: harmonypy>=2.0 has a Z_corr.T shape bug with anndata's obsm validation
+numpy>=1.26
+pandas>=2.2
+scipy>=1.11
+matplotlib>=3.8
+seaborn>=0.13
+openpyxl>=3.1
+GEOparse>=2.0
+pytest>=8.0

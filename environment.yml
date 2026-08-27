@@ -1,0 +1,21 @@
+name: car-t-atlas
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - scanpy=1.10.*
+  - anndata
+  - leidenalg
+  - python-igraph
+  - scikit-misc
+  - harmonypy=0.0.10  # newer harmonypy has a Z_corr shape bug with current anndata
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - openpyxl
+  - pip
+  - pip:
+      - GEOparse
