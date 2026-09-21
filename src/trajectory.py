@@ -45,6 +45,10 @@ def pick_root_cell(adata, groupby="cell_type"):
 
 def run_paga(adata, groupby="cell_type"):
     sc.tl.paga(adata, groups=groupby)
+    from scipy.sparse import csr_matrix
+    for k in ("connectivities", "connectivities_tree"): 
+        if k in adata.uns["paga"]:
+            adata.uns["paga"][k] = csr_matrix(adata.uns["paga"][k])
     sc.pl.paga(adata, color=[groupby], save="_celltype_graph.png", show=False, threshold=0.1)
     return adata
 

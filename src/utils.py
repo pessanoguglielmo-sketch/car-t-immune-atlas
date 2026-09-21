@@ -30,7 +30,7 @@ MARKER_GENES = {
     "Regulatory-like": ["FOXP3", "IL2RA", "IKZF2"],
 }
 
-
+# obs is  rows while var is columns
 def qc_summary(adata, label=""):
     """Print a quick QC summary for an AnnData object."""
     print(f"--- QC summary {label} ---")

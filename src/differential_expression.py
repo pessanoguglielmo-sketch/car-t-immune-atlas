@@ -26,13 +26,14 @@ sc.settings.verbosity = 1
 
 def de_by_cluster(adata, groupby="cell_type", method="wilcoxon"):
     sc.tl.rank_genes_groups(adata, groupby=groupby, method=method, key_added=f"rank_{groupby}")
-
+# it calculates differential expression between a cell type/cluster and the remaining
     sc.pl.rank_genes_groups_dotplot(
         adata, key=f"rank_{groupby}", groupby=groupby, n_genes=5,
         save=f"_top_markers_{groupby}.png", show=False,
     )
 
-    result = adata.uns[f"rank_{groupby}"]
+    result = adata.uns[f"rank_{groupby}"] 
+    #problem is that scanpy saves the differential expression as columns of tuplets which means that each collumn is a list basically (tuple is a special list fast that cannot change)
     groups = result["names"].dtype.names
     rows = []
     for g in groups:
@@ -78,7 +79,9 @@ def de_ip_vs_blood(adata, method="wilcoxon"):
     print(f"[DE] wrote {out} ({len(df)} rows)")
 
     sc.pl.rank_genes_groups(adata, key="rank_source", save="_ip_vs_blood.png", show=False)
-
+#A ranked list showing the gene names with the highest test scores / log2 fold-changes
+# A ranked list showing the gene names with the lowest test scores
+# Box plots or gene-rank score curves illustrating how significantly these top genes stand out above background noise.
     # simple volcano
     import matplotlib.pyplot as plt
     import numpy as np
